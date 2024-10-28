@@ -2,3 +2,8 @@ project.*
 Listings/
 Objects/
 *.A51
+*.obj
+.eide/
+.vscode/
+*.code-workspace
+.clang-format

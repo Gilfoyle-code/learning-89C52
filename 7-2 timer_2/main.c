@@ -40,7 +40,7 @@ void main()
 		}
 		
 		keyNum = Key();
-		switch(KeyNum)
+		switch(keyNum)
 		{
 			case 1:
 				LCD_Init();
