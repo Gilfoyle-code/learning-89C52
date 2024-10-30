@@ -9,15 +9,17 @@ void main()
 	LCD_Init();
 	DS1302_Init();
 	DS1302_WriteByte(0x8e,0x00);//关闭写入保护
-	LCD_ShowString(1,1,"RTC");
-	
-	DS1302_WriteByte(0x80, 0x00);
-	
+	LCD_ShowString(1,1,"  -  -  ");//静态字符初始化显示
+	LCD_ShowString(2,1,"  :  :  ");
+	DS1302_SetTime();//设置时间
 	while(1)
 	{
-		Second = DS1302_ReadByte(0x81);
-		Minute = DS1302_ReadByte(0x83);
-		LCD_ShowNum(2,1,Minute/16*10 + Minute%16,2);
-		LCD_ShowNum(2,3,Second/16*10 + Second%16,2);
+		DS1302_ReadTime();//读取时间
+		LCD_ShowNum(1,1,DS1302_Time[0],2);//显示年
+		LCD_ShowNum(1,4,DS1302_Time[1],2);//显示月
+		LCD_ShowNum(1,7,DS1302_Time[2],2);//显示日
+		LCD_ShowNum(2,1,DS1302_Time[3],2);//显示时
+		LCD_ShowNum(2,4,DS1302_Time[4],2);//显示分
+		LCD_ShowNum(2,7,DS1302_Time[5],2);//显示秒
 	}
 }
